@@ -1,39 +1,47 @@
 const showWpmResult = document.querySelector("#show-wpm-result");
-const finishTimer = document.querySelector("#finish-timer");
 let idInterval;
 
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
+let milliseconds = 0;
 let time = 0;
 idInterval = setInterval(() => {
-  if (seconds < 59) {
-    seconds++;
+  if (milliseconds < 9) {
+    milliseconds++;
   } else {
-    if (minutes < 59) {
-      minutes++;
+    if (seconds < 59) {
+      seconds++;
     } else {
-      if (hours < 24) {
-        hours++;
+      if (minutes < 59) {
+        minutes++;
       } else {
-        alert("please stop typing bruh");
+        if (hours < 24) {
+          hours++;
+        } else {
+          alert("please stop typing bruh");
+        }
+        minutes = 0;
       }
-      minutes = 0;
+      seconds = 0;
     }
-    seconds = 0;
+    milliseconds = 0;
   }
 
-  time = hours * 3600 + minutes * 60 + seconds;
+  time = hours * 60 + minutes + seconds / 60 + milliseconds / 600;
 
   showWpmResult.innerHTML = `${hours}:${String(minutes).padStart(
     2,
     "0"
-  )}:${String(seconds).padStart(2, "0")}`;
-}, 1000);
+  )}:${String(seconds).padStart(2, "0")}:${String(milliseconds).padEnd(
+    2,
+    "0"
+  )}`;
+}, 100);
 
-finishTimer.addEventListener("click", () => {
+export function finishTimer() {
   clearInterval(idInterval);
-});
+}
 
 export function timer() {
   return time;
