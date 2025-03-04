@@ -1,9 +1,9 @@
 import { charactersTyped } from "./characters.js";
-import { timer } from "./timer.js";
+import { timer, finishTimer } from "./timer.js";
 
 export function grossWpm() {
   const typedEntries = charactersTyped() / 5;
-  const time = timer();
+  const time = finishTimer();
   const rawWpm = typedEntries / time;
   console.log(typedEntries);
   console.log(time);
