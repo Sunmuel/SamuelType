@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SamuelType</title>
     <link rel="stylesheet" href="styles/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div>
-      <div id="insert-time-container">
-        <button id="insert-time-button">Insert time</button>
-      </div>
+    <div id="time-options-container">
+      <button id="insert-time-button">Insert time</button>
+      <div id="insert-time-container"></div>
       <button id="stopwatch-button">Stopwatch</button>
     </div>
-    <p id="show-wpm-result"></p>
-    <input type="text" id="input-typing-test" />
-    <button id="finish-timer">Finish</button>
+    <p id="show-timer"></p>
+    <input type="text" id="input-typing-test" autocomplete="off" />
+    <div id="input-container"></div>
+    <p id="select-an-option-alert"></p>
+
     <script type="module" src="scripts/main.js"></script>
   </body>
 </html>
