@@ -1,48 +1,53 @@
 const showWpmResult = document.querySelector("#show-wpm-result");
+const buttonFinishTimer = document.querySelector("#finish-timer");
+
 let idInterval;
+let idDisplayInterval;
+let timerRunning = false;
 
-let hours = 0;
 let minutes = 0;
-let seconds = 0;
-let milliseconds = 0;
-let time = 0;
-idInterval = setInterval(() => {
-  if (milliseconds < 9) {
-    milliseconds++;
-  } else {
-    if (seconds < 59) {
-      seconds++;
+let tenMilliseconds = 0;
+
+let displaySeconds = 0;
+let displayMinutes = 0;
+let displayHours = 0;
+
+export function timer(updateCallback) {
+  idDisplayInterval = setInterval(() => {
+    if (displaySeconds < 59) {
+      displaySeconds++;
     } else {
-      if (minutes < 59) {
-        minutes++;
+      if (displayMinutes < 59) {
+        displayMinutes++;
       } else {
-        if (hours < 24) {
-          hours++;
+        if (displayHours < 24) {
+          displayHours++;
         } else {
-          alert("please stop typing bruh");
+          alert("bruh, stop typing mate, please");
+          displayHours = 0;
         }
-        minutes = 0;
+        displayMinutes = 0;
       }
-      seconds = 0;
+      displaySeconds = 0;
     }
-    milliseconds = 0;
-  }
 
-  time = hours * 60 + minutes + seconds / 60 + milliseconds / 600;
-
-  showWpmResult.innerHTML = `${hours}:${String(minutes).padStart(
-    2,
-    "0"
-  )}:${String(seconds).padStart(2, "0")}:${String(milliseconds).padEnd(
-    2,
-    "0"
-  )}`;
-}, 100);
+    showWpmResult.innerHTML = `${displayHours}:${String(
+      displayMinutes
+    ).padStart(2, "0")}:${String(displaySeconds).padStart(2, "0")}`;
+  }, 1000);
+  idInterval = setInterval(() => {
+    timerRunning = true;
+    tenMilliseconds++;
+    minutes = tenMilliseconds / 6000;
+    minutes = minutes.toFixed(3);
+  }, 10);
+}
 
 export function finishTimer() {
   clearInterval(idInterval);
-}
+  clearInterval(idDisplayInterval);
 
-export function timer() {
-  return time;
+  timerRunning = false;
+
+  return minutes;
 }
