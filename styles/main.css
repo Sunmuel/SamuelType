@@ -1,0 +1,60 @@
+body {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+}
+
+button {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+
+  background-color: rgb(205, 205, 205);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(184, 184, 184);
+}
+
+input {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(205, 205, 205);
+}
+
+input:focus {
+  outline: none;
+  background-color: rgb(184, 184, 184);
+}
+
+#time-options-container {
+  display: flex;
+}
+
+#insert-button {
+  margin-right: 50px;
+}
+
+.insert-time-button-unpressed {
+  margin-right: 50px !important;
+}
+
+#insert-time-input {
+  width: 60px;
+}
+
+#insert-time-button {
+  margin-right: 7px;
+}
