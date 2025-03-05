@@ -54,20 +54,22 @@ buttonStopWatch.addEventListener("click", () => {
     buttonInsertTime.classList.add("insert-time-button-unpressed");
 
     inputTypingTest.addEventListener("input", () => {
-      stopwatch();
+      if (stopwatchPressed) {
+        stopwatch();
+      }
     });
 
     if (inputTypingTest.value) {
       inputTypingTest.value = "";
     }
-
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" && event.shiftKey) {
-        stopwatchPressed = false;
-        grossWpm();
-        clearTime();
-      }
-    });
+  }
+});
+window.addEventListener("keydown", (event) => {
+  if (stopwatchPressed) {
+    if (event.key === "Enter" && event.shiftKey) {
+      stopwatchPressed = false;
+      grossWpm();
+    }
   }
 });
 
