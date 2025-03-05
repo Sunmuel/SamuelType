@@ -1,5 +1,5 @@
 import { charactersTyped } from "./characters.js";
-import { finishStopwatch } from "./timer.js";
+import { finishStopwatch, clearTime } from "./timer.js";
 
 export function grossWpm() {
   const typedEntries = charactersTyped() / 5;
@@ -8,4 +8,5 @@ export function grossWpm() {
   console.log(typedEntries);
   console.log(time);
   console.log(rawWpm);
+  clearTime();
 }
