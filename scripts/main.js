@@ -1,4 +1,9 @@
-import { stopwatch, timerRunning, clearTime, insertTime } from "./timer.js";
+import {
+  stopwatch,
+  stopwatchRunning,
+  timeInsertedRunning,
+  insertTime,
+} from "./timer.js";
 import { charactersTyped } from "./characters.js";
 import { grossWpm } from "./grosswpm.js";
 
@@ -37,19 +42,32 @@ buttonInsertTime.addEventListener("click", () => {
     const insertTimeInput = document.querySelector("#insert-time-input");
     const insertButton = document.querySelector("#insert-button");
 
+    let timeInserted;
+
     insertButton.addEventListener("click", () => {
-      const timeInserted = insertTimeInput.value;
-      insertTime(timeInserted);
+      if (!timeInsertedRunning) {
+        timeInserted = insertTimeInput.value;
+        insertTime(timeInserted);
+      }
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        if (!timeInsertedRunning) {
+          timeInserted = insertTimeInput.value;
+          insertTime(timeInserted);
+        }
+      }
     });
   }
 });
 
 buttonStopWatch.addEventListener("click", () => {
-  if (!timerRunning && !stopwatchPressed) {
+  if (!stopwatchRunning && !stopwatchPressed) {
     stopwatchPressed = true;
     insertTimePressed = false;
 
-    showTimer.innerHTML = "0:00:00";
+    showTimer.innerHTML = "00:00";
     insertTimeContainer.innerHTML = "";
     buttonInsertTime.classList.add("insert-time-button-unpressed");
 
